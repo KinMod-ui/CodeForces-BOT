@@ -9,6 +9,6 @@ Installation and Usage:
     }
     
     run "npm install" in the command line to download all the required node modules
-    Now run "node app.js" and in browser open "localhost:3000".
+    Now run "node app.js" and in browser open "http://localhost:3000".
     Provide your codeforces ID and then enter it.
     Now You can do all the questions and it will automatically tell You the verdict.
