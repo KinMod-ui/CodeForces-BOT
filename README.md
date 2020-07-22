@@ -9,9 +9,8 @@ Installation and Usage:
     else{
         Download nodejs which already has npm with it 
     }
-    
     run "npm install" in the command line to download all the required node modules
-    If a folder named node_modules is created then u can move on the next step otherwise make a folder named node_modules and then run "npm install" again
+    If a folder named node_modules is created then u can move on the next step otherwise make a folder named node_modules and if necessary then run "npm install" again
     Now run "node app.js" and in browser open "http://localhost:3000".
     Enter your codeforces ID and then enter it.
     Now You can do all the questions and it will automatically tell You the verdict.
