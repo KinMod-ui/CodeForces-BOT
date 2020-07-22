@@ -41,7 +41,7 @@ app.post('/' , function(req , res){
             if (flag == 1){
                 child = exec ("python3 ./Verdic.py " + ans + " " + question, function(err ,  stdout , stderr){
                     if (err !== null) {
-                            console.log('exec error: ' + error);
+                            console.log('exec error: ' + err);
                     }
                 })
                 // console.log(question)
