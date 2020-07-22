@@ -2,6 +2,7 @@
  A bot to help during contests of various Codeforces rounds. It uses Codeforces API to check submissions and if a solution is submitted then it will tell the     verdict. Therefore avoiding all the long queues of Contests.
 
 Installation and Usage:
+    
     Get the containing files and folders in your local system.
     If you already have npm/nodejs install then continue :
     else{
