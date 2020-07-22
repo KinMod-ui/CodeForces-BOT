@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.use(parser.urlencoded({extended:true}))
 app.use(express.static("public"));
 
+console.log("Go to http://localhost:3000")
 app.get('/' , function(req , res){
     // console.log("Get page")
     res.render("index")
