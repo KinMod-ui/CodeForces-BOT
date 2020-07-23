@@ -4,7 +4,7 @@
 Installation and Usage:
     
     Get the containing files and folders in your local system (Simply click the green button to download the code).
-    "cd" into your directory where the code has been downloaded in the terminal.
+    "cd" to your directory in terminal where the code has been downloaded on the system.
     If you already have npm/nodejs installed then continue :
     else{
         Download nodejs which already has npm with it 
