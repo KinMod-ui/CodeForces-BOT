@@ -1,4 +1,5 @@
 # CodeForces-BOT
+Create your own private server which will fetch data from the Codeforces API
  A bot to help during contests of various Codeforces rounds. It uses Codeforces API to check submissions and if a solution is submitted then it will tell the     verdict. Therefore helping you in the long queues of Contests.
 
 Installation and Usage:
