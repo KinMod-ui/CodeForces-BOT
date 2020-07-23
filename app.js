@@ -7,7 +7,7 @@ const app = express()
 // app.set('view engine', 'html');
 app.use(parser.urlencoded({extended:true}))
 app.use(express.static("public"));
-
+console.log("Go to http://localhost:3000")
 app.get('/' , function(req , res){
     // console.log("Get page")
     res.sendFile(__dirname + "/index.html")
