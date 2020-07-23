@@ -4,24 +4,23 @@ const https = require('https')
 var exec = require("child_process").exec,child;
 
 const app = express()
-app.set('view engine', 'ejs');
+// app.set('view engine', 'html');
 app.use(parser.urlencoded({extended:true}))
 app.use(express.static("public"));
 
-console.log("Go to http://localhost:3000")
 app.get('/' , function(req , res){
     // console.log("Get page")
-    res.render("index")
+    res.sendFile(__dirname + "/index.html")
 })
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 var ans = null
 app.post('/' , function(req , res){
-
     const username = req.body.username
     console.log(username)
+
     const link = "https://codeforces.com/api/user.status?handle=" + username +"&from=1&count=1"
-    res.render('results' , {verdict : ans})
+    res.sendFile(__dirname + "/results.html")
 
     async function getreq()
     {
@@ -41,10 +40,10 @@ app.post('/' , function(req , res){
             if (flag == 1){
                 child = exec ("python3 ./Verdic.py " + ans + " " + question, function(err ,  stdout , stderr){
                     if (err !== null) {
-                            console.log('exec error: ' + err);
+                            console.log('exec error: ' + error);
                     }
                 })
-                // console.log(question)
+                console.log(ans + " " + question)
             }
             await delay(4000)
             var timeNew = time
@@ -90,7 +89,6 @@ app.post('/' , function(req , res){
             }
         }
     }
-
     getreq()
 })
 
