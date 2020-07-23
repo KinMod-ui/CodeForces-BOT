@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codeforces Bot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="css/favicon.ico">
+    <script>
+        function validateForm() {
+          var x = document.forms["myForm"]["username"].value;
+          if (x == "" || x == null) {
+            alert("Name must be filled out");
+            return false;
+          }
+        }
+        </script>
+
+</head>
+
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">CodeForces Audio Grader</h3>
+            </div>
+        </header>
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading"></h1>
+            <p class="lead">Enter your Username and get an audio alert when the grader outputs your result so that you
+                dont have to wait in queue!</p>
+            <div class="box">
+                <form name="myForm" action="/" method="POST" onsubmit="return validateForm()">
+                    <input type="text" id="form102" class="form-control" name="username"
+                        placeholder="Enter your Username" autocomplete="off">
+                    <button type="submit" class="btn btn-lg btn-secondary">Get Submissions</button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>Made by <a href="https://github.com/KinMod-ui">KinMod </a>and<a href="https://github.com/dakshita117"> Ducky</a>.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
