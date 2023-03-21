@@ -1,95 +1,42 @@
-const express = require('express')
-const parser = require('body-parser')
-const https = require('https')
-var exec = require("child_process").exec,child;
+import express from 'express';
+import parser from 'body-parser';
 
-const app = express()
-// app.set('view engine', 'html');
-app.use(parser.urlencoded({extended:true}))
-app.use(express.static("public"));
-console.log("Go to http://localhost:3000")
-app.get('/' , function(req , res){
-    // console.log("Get page")
-    res.sendFile(__dirname + "/index.html")
-})
+import { getReq } from './getReq.js';
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
-var ans = null
-app.post('/' , function(req , res){
-    const username = req.body.username
-    console.log(username)
+import rateLimit from 'express-rate-limit';
 
-    const link = "https://codeforces.com/api/user.status?handle=" + username +"&from=1&count=1"
-    res.sendFile(__dirname + "/results.html")
+const limiter = rateLimit({
+  windowMs: 5000,
+  max: 3,
+  message: 'You have exceeded the 3 requests in 5 seconds limit!',
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 
-    async function getreq()
-    {
-        var flag = 0
-        var time
-        var question
-        while(1)
-        {
-            const request = https.get(link  ,function(response){
-                response.on("data" ,  function(data){
-                    var respo = JSON.parse(data)
-                    time = respo.result[0].creationTimeSeconds
-                    ans = respo.result[0].verdict
-                    
-                })
-            })
-            if (flag == 1){
-                child = exec ("python3 ./Verdic.py " + ans + " " + question, function(err ,  stdout , stderr){
-                    if (err !== null) {
-                            console.log('exec error: ' + error);
-                    }
-                })
-                console.log(ans + " " + question)
-            }
-            await delay(4000)
-            var timeNew = time
-            var newReq
-            var verd = ans
-            while(1){
-                newReq = https.get(link , function(resp){
-                    resp.on("data" , function (dat){
-                        dat = JSON.parse(dat)
-                        timeNew = dat.result[0].creationTimeSeconds
-                        verd = dat.result[0].verdict
-                        question = dat.result[0].problem.index
-                    })
-                })
-                if (time == timeNew){
-                    await delay (4000)
-                    continue
-                }
-                else if (time != timeNew && verd == "TESTING"){
-                    
-                    while(verd == "TESTING"  || verd == undefined){
-                        await delay (1000)
-                        newReq = https.get(link , function(resp){
-                            resp.on("data" , function (dat){
-                                dat = JSON.parse(dat)
-                                timeNew = dat.result[0].creationTimeSeconds
-                                verd = dat.result[0].verdict
-                            })
-                        })
-                    }
-                    ans = verd
-                    flag = 1
-                    break
-                }
-                else if (time != timeNew && verd != undefined){
-                    ans = verd
-                    flag = 1
-                    break
-                }
-                else{
-                    await delay(1500)
-                }
-            }
-        }
-    }
-    getreq()
-})
+const app = express();
 
-app.listen(3000)
+app.use(parser.urlencoded({ extended: true }));
+app.use(limiter);
+app.use(express.static('public'));
+
+console.log('Go to http://localhost:3000');
+
+app.get('/', function (req, res) {
+  // console.log("Get page")
+  res.sendFile('./index.html', { root: '.' });
+});
+
+app.post('/', function (req, res) {
+  const username = req.body.username;
+  console.log(username);
+
+  const link =
+    'https://codeforces.com/api/user.status?handle=' +
+    username +
+    '&from=1&count=1';
+  res.sendFile('/results.html', { root: '.' });
+
+  getReq(link);
+});
+
+app.listen(3000);
